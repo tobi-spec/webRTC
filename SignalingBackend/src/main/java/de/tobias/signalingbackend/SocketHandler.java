@@ -1,4 +1,4 @@
-package de.tobias.signalingbackend.service;
+package de.tobias.signalingbackend;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.TextMessage;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
-public class SocketService extends TextWebSocketHandler {
+public class SocketHandler extends TextWebSocketHandler {
 
     List<WebSocketSession> sessionList = new CopyOnWriteArrayList<>();
 

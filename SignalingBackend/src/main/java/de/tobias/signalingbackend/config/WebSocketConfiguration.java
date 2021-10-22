@@ -1,30 +1,27 @@
 package de.tobias.signalingbackend.config;
 
-import de.tobias.signalingbackend.service.SocketService;
+import de.tobias.signalingbackend.SocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import java.io.IOException;
-import java.util.logging.SocketHandler;
-
 
 @Configuration
 @EnableWebSocket
 public class WebSocketConfiguration implements WebSocketConfigurer {
 
-    SocketService socketService;
+    SocketHandler socketHandler;
 
     @Autowired
-    public WebSocketConfiguration(SocketService socketService) {
-        this.socketService = socketService;
+    public WebSocketConfiguration(SocketHandler socketHandler) {
+        this.socketHandler = socketHandler;
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new SocketHandler(socketService), "/socket")
+        registry.addHandler(new SocketHandler(), "/socket")
                 .setAllowedOrigins("*");
     }
 }
