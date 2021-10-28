@@ -11,7 +11,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/api")
 public class SignalingController {
 
-    @GetMapping("/conncetion")
+    @GetMapping("/test")
     public ResponseEntity<String> connection(){
         return ok("Server is running");
     }
