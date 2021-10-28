@@ -21,13 +21,13 @@ public class SocketHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionsClosed(WebSocketSession session, CloseStatus status){
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status){
         sessionList.remove(session);
     }
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message)
-        throws InterruptedException,IOException {
+        throws IOException {
             for (WebSocketSession webSocketSession: sessionList) {
                 if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())){
                     webSocketSession.sendMessage(message);
